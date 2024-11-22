@@ -7,13 +7,6 @@
     <style>
         :root {
             --primary: #50b0e3;
-            --background: #ffffff;
-            --text: #333333;
-            --accent: #ff6b6b;
-            --card-bg: #f0f0f0;
-        }
-        .dark-mode {
-            --primary: #50b0e3;
             --background: #1a1a1a;
             --text: #ffffff;
             --accent: #ff6b6b;
@@ -29,7 +22,6 @@
             background-color: var(--background);
             color: var(--text);
             line-height: 1.6;
-            transition: background-color 0.3s ease, color 0.3s ease;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -67,18 +59,12 @@
             font-size: 2rem;
             font-weight: 300;
             margin-bottom: 1rem;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: fadeInDown 0.5s ease forwards;
         }
         h2 {
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 2rem;
             line-height: 1.2;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: fadeInDown 0.5s ease forwards 0.2s;
         }
         h2 span {
             color: var(--primary);
@@ -97,12 +83,8 @@
             font-weight: 700;
             font-size: 1.125rem;
             text-decoration: none;
-            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.5s ease forwards 0.4s;
         }
         .btn-primary {
             background-color: var(--primary);
@@ -120,31 +102,8 @@
             transform: translateY(-1px);
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
-        .btn::after {
-            content: '';
-            display: inline-block;
-            height: 100%;
-            width: 100%;
-            border-radius: 100px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            transition: all .4s;
-        }
-        .btn:hover::after {
-            transform: scaleX(1.4) scaleY(1.6);
-            opacity: 0;
-        }
         section {
             margin-bottom: 4rem;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        .visible {
-            opacity: 1;
-            transform: translateY(0);
         }
         h3 {
             font-size: 2rem;
@@ -157,7 +116,6 @@
             padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         }
         .card:hover {
             transform: translateY(-5px);
@@ -202,7 +160,6 @@
             padding: 0.5rem 1rem;
             border: 2px solid var(--primary);
             border-radius: 5px;
-            transition: all 0.3s ease;
         }
         .contact a:hover {
             background-color: var(--primary);
@@ -213,29 +170,6 @@
             padding: 1.5rem;
             background-color: var(--card-bg);
             border-radius: 15px 15px 0 0;
-            transition: background-color 0.3s ease;
-        }
-        .theme-toggle {
-            position: fixed;
-            top: calc(20px + env(safe-area-inset-top));
-            right: 20px;
-            background-color: var(--primary);
-            color: var(--background);
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .theme-toggle:hover {
-            transform: scale(1.1);
         }
         @media (max-width: 768px) {
             h2 {
@@ -243,18 +177,6 @@
             }
             .cta-buttons {
                 flex-direction: column;
-            }
-        }
-        @keyframes fadeInDown {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
             }
         }
         .features {
@@ -268,7 +190,6 @@
             padding: 1.5rem;
             border-radius: 10px;
             text-align: center;
-            transition: all 0.3s ease;
         }
         .feature-card:hover {
             transform: translateY(-5px);
@@ -282,7 +203,6 @@
     </style>
 </head>
 <body>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌓</button>
     <div class="container">
         <header>
             <h1>Domain Sale Notice: shopifycdn.in</h1>
@@ -390,47 +310,6 @@
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('resize', handleScroll);
         handleScroll();
-
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-
-        function setTheme(theme) {
-            if (theme === "dark") {
-                body.classList.add("dark-mode");
-                localStorage.setItem("theme", "dark");
-            } else {
-                body.classList.remove("dark-mode");
-                localStorage.setItem("theme", "light");
-            }
-            updateThemeIcon();
-        }
-
-        function updateThemeIcon() {
-            themeToggle.textContent = body.classList.contains('dark-mode') ? '☀️' : '🌙';
-        }
-
-        // Check for saved user preference, otherwise use system preference
-        const savedTheme = localStorage.getItem("theme");
-        if (savedTheme) {
-            setTheme(savedTheme);
-        } else {
-            setTheme(prefersDarkScheme.matches ? "dark" : "light");
-        }
-
-        themeToggle.addEventListener("click", () => {
-            if (body.classList.contains("dark-mode")) {
-                setTheme("light");
-            } else {
-                setTheme("dark");
-            }
-        });
-
-        // Listen for changes in color scheme preference
-        prefersDarkScheme.addListener((e) => {
-            setTheme(e.matches ? "dark" : "light");
-        });
     </script>
 </body>
 </html>
