@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopifyCDN For Sale</title>
+    <title>ShopifyCDN.in - The Ultimate E-commerce CDN Domain</title>
     <style>
+        :root {
+            --primary: #50b0e3;
+            --background: #ffffff;
+            --text: #333333;
+            --accent: #ff6b6b;
+            --card-bg: #f0f0f0;
+        }
+        .dark-mode {
+            --primary: #50b0e3;
+            --background: #1a1a1a;
+            --text: #ffffff;
+            --accent: #ff6b6b;
+            --card-bg: #2a2a2a;
+        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background-color: #1a1a1a;
-            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
             line-height: 1.6;
         }
         .container {
@@ -23,143 +38,790 @@
         }
         header {
             text-align: center;
-            padding: 3rem 0;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--background) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(45deg, var(--text) 0, var(--text) 1px, transparent 1px, transparent 20px);
+            opacity: 0.05;
+            animation: shine 20s linear infinite;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) translateY(-50%) rotate(360deg); }
         }
         h1 {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 300;
             margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 0.5s ease forwards;
         }
         h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
             margin-bottom: 2rem;
             line-height: 1.2;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 0.5s ease forwards 0.2s;
         }
         h2 span {
-            color: #50b0e3;
+            color: var(--primary);
+            display: block;
         }
-        .acquire-btn {
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .btn {
             display: inline-block;
-            background-color: white;
-            color: #1a1a1a;
             padding: 1rem 2rem;
-            border-radius: 9999px;
+            border-radius: 50px;
             font-weight: 700;
             font-size: 1.125rem;
             text-decoration: none;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards 0.4s;
         }
-        .acquire-btn:hover {
-            transform: scale(1.05);
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--background);
+        }
+        .btn-secondary {
+            background-color: var(--accent);
+            color: var(--background);
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        .btn::after {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+            border-radius: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: all .4s;
+        }
+        .btn:hover::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
         }
         section {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         h3 {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        .card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
         }
         .disclaimer {
-            background-color: #2a2a2a;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+            margin-top: 1rem;
         }
         .disclaimer p {
             font-weight: 600;
-            color: #ff6b6b;
-        }
-        .highlights, .sale-details {
-            background-color: #2a2a2a;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
+            color: var(--accent);
         }
         ul {
-            list-style-position: inside;
-            margin-bottom: 1.5rem;
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+        ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        ul li::before {
+            content: '🚀';
+            position: absolute;
+            left: 0;
+            top: 0;
         }
         strong {
             font-weight: 700;
+            color: var(--primary);
         }
         .contact {
             text-align: center;
         }
         .contact a {
-            color: white;
+            color: var(--text);
             text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary);
+            border-radius: 5px;
+            transition: all 0.3s ease;
         }
         .contact a:hover {
-            text-decoration: underline;
+            background-color: var(--primary);
+            color: var(--background);
         }
         footer {
             text-align: center;
             padding: 1.5rem;
-            background-color: #2a2a2a;
-            border-radius: 0.5rem;
+            background-color: var(--card-bg);
+            border-radius: 15px 15px 0 0;
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: var(--background);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
         }
         @media (max-width: 768px) {
             h2 {
                 font-size: 2rem;
             }
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .feature-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
         }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" id="themeToggle">🌓</button>
     <div class="container">
         <header>
             <h1>Domain Sale Notice: shopifycdn.in</h1>
-            <h2>For Sale to All Interested Parties,<br><span>with a Special Welcome to Shopify Inc.</span></h2>
-            <a href="#" class="acquire-btn" id="acquireBtn">Acquire Now</a>
+            <h2>Elevate Your E-commerce Game<br><span>with shopifycdn.in</span></h2>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary" id="acquireBtn">Acquire Now</a>
+                <a href="#features" class="btn btn-secondary">Learn More</a>
+            </div>
         </header>
 
-        <section>
-            <h3>About ShopifyCDN For Sale</h3>
+        <section class="card">
+            <h3>About ShopifyCDN.in</h3>
+            <p>Welcome to the future of e-commerce content delivery! We're offering the premium domain <strong>shopifycdn.in</strong> for sale. This domain represents the perfect fusion of Shopify's e-commerce prowess and the lightning-fast capabilities of Content Delivery Networks (CDNs).</p>
             <div class="disclaimer">
-                <p>Disclaimer: shopifycdn.in is not affiliated with Shopify Inc. or any of its subsidiaries. The domain is offered for sale for its generic value in enhancing e-commerce solutions, content delivery networks.</p>
+                <p>Disclaimer: shopifycdn.in is not affiliated with, endorsed by, or in any way officially connected with Shopify Inc. or any of its subsidiaries or affiliates. The official Shopify website can be found at https://www.shopify.com. The name "Shopify" as well as related names, marks, emblems and images are registered trademarks of their respective owners.</p>
             </div>
-            <p>We are offering the premium domain <strong>shopifycdn.in</strong> for sale. This highly relevant domain intersects the e-commerce expertise of Shopify with the performance enhancement of Content Delivery Networks (CDNs).</p>
         </section>
 
-        <section class="highlights">
-            <h3>Key Highlights:</h3>
+        <section class="card" id="features">
+            <h3>Why ShopifyCDN.in Is Your Next Big Move</h3>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h4>Highly Relevant</h4>
+                    <p>Perfect for Shopify users, CDN providers, or e-commerce solution specialists looking to make a mark.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h4>SEO Goldmine</h4>
+                    <p>Combine the power of "Shopify" and "CDN" in one domain for unparalleled search visibility.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌏</div>
+                    <h4>Global Appeal</h4>
+                    <p>.in extension perfect for India-focused businesses or global companies targeting the Indian market.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h4>Business Potential</h4>
+                    <p>Launch CDN services, create Shopify apps, or establish yourself as an e-commerce authority.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>The Opportunity</h3>
+            <p>Imagine owning a domain that speaks directly to the intersection of e-commerce and content delivery. With <strong>shopifycdn.in</strong>, you're not just buying a web address; you're investing in a digital asset with immense potential.</p>
             <ul>
-                <li><strong>Highly Relevant:</strong> Perfect for Shopify users, CDN providers, or e-commerce solution specialists</li>
-                <li><strong>Keyword Strength:</strong> Directly features "Shopify" and "CDN"</li>
-                <li><strong>Geo Extension:</strong> .in ideal for India-focused businesses or global companies targeting the Indian market</li>
+                <li><strong>For Developers:</strong> Create Shopify apps focused on improving site speed and performance.</li>
+                <li><strong>For CDN Providers:</strong> Offer specialized services tailored to Shopify's massive user base.</li>
+                <li><strong>For E-commerce Consultants:</strong> Establish yourself as the go-to expert for Shopify performance optimization.</li>
             </ul>
-            <p><strong>Our Preference:</strong> While we welcome all serious buyers, we would be particularly delighted to discuss this opportunity with Shopify Inc. directly, believing the domain's inherent value aligns closely with Shopify's ecosystem.</p>
+            <p><strong>Our Vision:</strong> While we welcome interest from all serious buyers, we believe this domain could be particularly valuable to Shopify Inc. or major CDN providers looking to strengthen their position in the e-commerce space.</p>
         </section>
 
-        <section class="sale-details">
-            <h3>Sale Details:</h3>
-            <p><strong>Asking Price:</strong> $25,000 (negotiable for the right buyer)</p>
+        <section class="card">
+            <h3>Sale Details</h3>
+            <p><strong>Asking Price:</strong> $25,000 (Open to negotiation for the right buyer)</p>
             <p><strong>Contact:</strong> contact@shopifycdn.in</p>
-            <p><strong>Serious Inquiries Only, Please.</strong> We look forward to discussing shopifycdn.in's potential with you, especially if you're from the Shopify team.</p>
+            <p><strong>Serious Inquiries Only, Please.</strong> We're excited to discuss the potential of shopifycdn.in with visionary buyers who see its true value.</p>
+            <div class="disclaimer">
+                <p>Legal Notice: The sale of this domain does not include any rights to use Shopify's trademarks or intellectual property. The buyer is responsible for ensuring their use of the domain complies with all applicable laws and does not infringe on any third-party rights.</p>
+            </div>
         </section>
 
         <section class="contact">
-            <h3>Contact Us</h3>
-            <a href="mailto:contact@shopifycdn.in">contact@shopifycdn.in</a>
-            <a href="https://wa.me/your-number">Message us on WhatsApp</a>
+            <h3>Ready to Take the Next Step?</h3>
+            <a href="mailto:contact@shopifycdn.in">Email Us</a>
+            <a href="https://wa.me/your-number">WhatsApp Us</a>
         </section>
 
         <footer>
-            <p>&copy; 2024 ShopifyCDN For Sale - All Rights Reserved.</p>
+            <p>&copy; 2024 ShopifyCDN.in Domain Sale. All Rights Reserved.</p>
+            <p>This is a domain sale advertisement. We respect all trademarks and intellectual property rights.</p>
         </footer>
     </div>
 
     <script>
         document.getElementById('acquireBtn').addEventListener('click', function(e) {
             e.preventDefault();
-            var subject = encodeURIComponent('Inquiry about shopifycdn.in');
-            var body = encodeURIComponent('I\'m interested in purchasing the domain shopifycdn.in. Please provide more information.');
+            var subject = encodeURIComponent('Inquiry about shopifycdn.in domain purchase');
+            var body = encodeURIComponent('Hello,\n\nI am interested in purchasing the shopifycdn.in domain. Could you please provide more information about the sale process and any additional details about the domain?\n\nThank you,\n[Your Name]');
             window.location.href = 'mailto:contact@shopifycdn.in?subject=' + subject + '&body=' + body;
+        });
+
+        function isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScroll() {
+            var sections = document.querySelectorAll('section');
+            sections.forEach(function(section) {
+                if (isElementInViewport(section)) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleScroll);
+        handleScroll();
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            updateThemeIcon();
+        });
+
+        function updateThemeIcon() {
+            themeToggle.textContent = body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        }
+
+        // Check user's preferred color scheme
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            body.classList.add('dark-mode');
+            updateThemeIcon();
+        }
+
+        // Listen for changes in color scheme preference
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (e.matches) {
+                body.classList.add('dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+            }
+            updateThemeIcon();
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopifyCDN.in - The Ultimate E-commerce CDN Domain</title>
+    <style>
+        :root {
+            --primary: #50b0e3;
+            --background: #ffffff;
+            --text: #333333;
+            --accent: #ff6b6b;
+            --card-bg: #f0f0f0;
+        }
+        .dark-mode {
+            --primary: #50b0e3;
+            --background: #1a1a1a;
+            --text: #ffffff;
+            --accent: #ff6b6b;
+            --card-bg: #2a2a2a;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        header {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--background) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(45deg, var(--text) 0, var(--text) 1px, transparent 1px, transparent 20px);
+            opacity: 0.05;
+            animation: shine 20s linear infinite;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) translateY(-50%) rotate(360deg); }
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 0.5s ease forwards;
+        }
+        h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 0.5s ease forwards 0.2s;
+        }
+        h2 span {
+            color: var(--primary);
+            display: block;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.125rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards 0.4s;
+        }
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--background);
+        }
+        .btn-secondary {
+            background-color: var(--accent);
+            color: var(--background);
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        .btn::after {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+            border-radius: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: all .4s;
+        }
+        .btn:hover::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+        section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        .card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        .disclaimer {
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+            margin-top: 1rem;
+        }
+        .disclaimer p {
+            font-weight: 600;
+            color: var(--accent);
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+        ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        ul li::before {
+            content: '🚀';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        strong {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .contact {
+            text-align: center;
+        }
+        .contact a {
+            color: var(--text);
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .contact a:hover {
+            background-color: var(--primary);
+            color: var(--background);
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: var(--card-bg);
+            border-radius: 15px 15px 0 0;
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: var(--background);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 2rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .feature-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle">🌓</button>
+    <div class="container">
+        <header>
+            <h1>Domain Sale Notice: shopifycdn.in</h1>
+            <h2>Elevate Your E-commerce Game<br><span>with shopifycdn.in</span></h2>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary" id="acquireBtn">Acquire Now</a>
+                <a href="#features" class="btn btn-secondary">Learn More</a>
+            </div>
+        </header>
+
+        <section class="card">
+            <h3>About ShopifyCDN.in</h3>
+            <p>Welcome to the future of e-commerce content delivery! We're offering the premium domain <strong>shopifycdn.in</strong> for sale. This domain represents the perfect fusion of Shopify's e-commerce prowess and the lightning-fast capabilities of Content Delivery Networks (CDNs).</p>
+            <div class="disclaimer">
+                <p>Disclaimer: shopifycdn.in is not affiliated with, endorsed by, or in any way officially connected with Shopify Inc. or any of its subsidiaries or affiliates. The official Shopify website can be found at https://www.shopify.com. The name "Shopify" as well as related names, marks, emblems and images are registered trademarks of their respective owners.</p>
+            </div>
+        </section>
+
+        <section class="card" id="features">
+            <h3>Why ShopifyCDN.in Is Your Next Big Move</h3>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h4>Highly Relevant</h4>
+                    <p>Perfect for Shopify users, CDN providers, or e-commerce solution specialists looking to make a mark.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h4>SEO Goldmine</h4>
+                    <p>Combine the power of "Shopify" and "CDN" in one domain for unparalleled search visibility.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌏</div>
+                    <h4>Global Appeal</h4>
+                    <p>.in extension perfect for India-focused businesses or global companies targeting the Indian market.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h4>Business Potential</h4>
+                    <p>Launch CDN services, create Shopify apps, or establish yourself as an e-commerce authority.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>The Opportunity</h3>
+            <p>Imagine owning a domain that speaks directly to the intersection of e-commerce and content delivery. With <strong>shopifycdn.in</strong>, you're not just buying a web address; you're investing in a digital asset with immense potential.</p>
+            <ul>
+                <li><strong>For Developers:</strong> Create Shopify apps focused on improving site speed and performance.</li>
+                <li><strong>For CDN Providers:</strong> Offer specialized services tailored to Shopify's massive user base.</li>
+                <li><strong>For E-commerce Consultants:</strong> Establish yourself as the go-to expert for Shopify performance optimization.</li>
+            </ul>
+            <p><strong>Our Vision:</strong> While we welcome interest from all serious buyers, we believe this domain could be particularly valuable to Shopify Inc. or major CDN providers looking to strengthen their position in the e-commerce space.</p>
+        </section>
+
+        <section class="card">
+            <h3>Sale Details</h3>
+            <p><strong>Asking Price:</strong> $25,000 (Open to negotiation for the right buyer)</p>
+            <p><strong>Contact:</strong> contact@shopifycdn.in</p>
+            <p><strong>Serious Inquiries Only, Please.</strong> We're excited to discuss the potential of shopifycdn.in with visionary buyers who see its true value.</p>
+            <div class="disclaimer">
+                <p>Legal Notice: The sale of this domain does not include any rights to use Shopify's trademarks or intellectual property. The buyer is responsible for ensuring their use of the domain complies with all applicable laws and does not infringe on any third-party rights.</p>
+            </div>
+        </section>
+
+        <section class="contact">
+            <h3>Ready to Take the Next Step?</h3>
+            <a href="mailto:contact@shopifycdn.in">Email Us</a>
+            <a href="https://wa.me/your-number">WhatsApp Us</a>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 ShopifyCDN.in Domain Sale. All Rights Reserved.</p>
+            <p>This is a domain sale advertisement. We respect all trademarks and intellectual property rights.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('acquireBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            var subject = encodeURIComponent('Inquiry about shopifycdn.in domain purchase');
+            var body = encodeURIComponent('Hello,\n\nI am interested in purchasing the shopifycdn.in domain. Could you please provide more information about the sale process and any additional details about the domain?\n\nThank you,\n[Your Name]');
+            window.location.href = 'mailto:contact@shopifycdn.in?subject=' + subject + '&body=' + body;
+        });
+
+        function isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScroll() {
+            var sections = document.querySelectorAll('section');
+            sections.forEach(function(section) {
+                if (isElementInViewport(section)) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleScroll);
+        handleScroll();
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            updateThemeIcon();
+        });
+
+        function updateThemeIcon() {
+            themeToggle.textContent = body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        }
+
+        // Check user's preferred color scheme
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            body.classList.add('dark-mode');
+            updateThemeIcon();
+        }
+
+        // Listen for changes in color scheme preference
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (e.matches) {
+                body.classList.add('dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+            }
+            updateThemeIcon();
         });
     </script>
 </body>
 </html>
-
